@@ -1,0 +1,26 @@
+{
+  "name": "better-iframe",
+  "version": "0.0.1",
+  "description": "Creates an iFrame which asks for permission, before the 3rd Party Service is loaded.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "HTML",
+    "JavaScript",
+    "iFrame",
+    "YouTube",
+    "GoogleMaps",
+    "DSGVO",
+    "Cookies",
+    "3rd",
+    "Party"
+  ],
+  "author": "nils.bentlage@googlemail.com",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nilsbentlage/better-iframe.git"
+  }
+}
