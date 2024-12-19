@@ -1,6 +1,15 @@
 class BetterIframe extends HTMLElement {
+  static get observedAttributes() {
+    return ["src", "primary-color", "border-radius", "height", "image-src"];
+  }
+
+  constructor() {
+    super();
+    this.attachShadow({ mode: "closed" });
+  }
+
   accept() {
-    this.renderMap();
+    this.renderIframe();
   }
 
   renderCSS() {
@@ -50,7 +59,7 @@ class BetterIframe extends HTMLElement {
     this.shadow.appendChild(style);
   }
 
-  renderInitial() {
+  renderQuestion() {
     this.shadow.innerHTML = `
     <div class="container">
         <slot></slot>
@@ -59,7 +68,7 @@ class BetterIframe extends HTMLElement {
     this.renderCSS();
   }
 
-  renderMap() {
+  renderIframe() {
     this.shadow.innerHTML = `
     <iframe
       width="100%"
@@ -74,19 +83,27 @@ class BetterIframe extends HTMLElement {
   }
 
   connectedCallback() {
-    this.src = this.getAttribute("src") || "";
-    this.primaryColor = this.getAttribute("primary-color") || "blue";
-    this.borderRadius = this.getAttribute("border-radius") || "0px";
-    this.height = this.getAttribute("height") || "450";
-    this.shadow = this.attachShadow({ mode: "closed" });
-    this.imageSource = this.getAttribute("image-src");
-    this.renderInitial();
+    this.updateAttributes();
+    this.renderQuestion();
     this.shadow.querySelector("#accept").addEventListener("click", () => {
       this.accept();
     });
   }
 
-  destroy() {
+  attributeChangedCallback() {
+    this.updateAttributes();
+    this.renderQuestion();
+  }
+
+  updateAttributes() {
+    this.src = this.getAttribute("src") || "";
+    this.primaryColor = this.getAttribute("primary-color") || "blue";
+    this.borderRadius = this.getAttribute("border-radius") || "0px";
+    this.height = this.getAttribute("height") || "450";
+    this.imageSource = this.getAttribute("image-src");
+  }
+
+  disconnectedCallback() {
     this.shadow.querySelector("#accept").removeEventListener("click", () => {
       this.accept();
     });
