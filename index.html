@@ -11,11 +11,23 @@
         margin: 0;
         padding: 2rem;
       }
+
+      td {
+        padding-right: 1rem;
+      }
     </style>
   </head>
   <body>
     <h1>External Services with built-in Cookie Consent</h1>
-    <h2>Google Maps</h2>
+
+    <hr />
+
+    <div id="readme-content"></div>
+
+    <hr />
+
+    <h2>Examples</h2>
+    <h3>Google Maps</h3>
     <better-iframe
       primary-color="#f5a900"
       height="100vh"
@@ -28,7 +40,7 @@
       you: Is that a Problem for you? If it is, don't click OK. OK?
       <a href="#datenschutz">Read more about the target service</a>
     </better-iframe>
-    <h2>YouTube</h2>
+    <h3>YouTube</h3>
     <better-iframe
       primary-color="red"
       height="400px"
@@ -41,5 +53,18 @@
       you: Is that a Problem for you? If it is, don't click OK. OK?
       <a href="#datenschutz">Read more about the target service</a>
     </better-iframe>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", () => {
+        fetch("readme.md")
+          .then((response) => response.text())
+          .then((text) => {
+            document.getElementById("readme-content").innerHTML =
+              marked.parse(text);
+          })
+          .catch((error) => console.error("Error fetching README:", error));
+      });
+    </script>
   </body>
 </html>

@@ -38,4 +38,4 @@ This project is licensed under the ISC License. See the LICENSE file for details
 
 ## Author
 
-Nils Bentlage - nils.bentlage@googlemail.com
+Nils Bentlage - [GitHub](https://github.com/nilsbentlage)
